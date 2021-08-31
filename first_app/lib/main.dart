@@ -14,15 +14,18 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
           primarySwatch: Colors.blue,
           primaryColor: Colors.amber[200],
-          accentColor: Colors.red[300],
+          accentColor: Colors.yellow[100],
+          // เป็นการกำหนดสีแบบภาพรวม ว่า overall ให้เปนสีอะไร
           textTheme: TextTheme(bodyText2: TextStyle(color: Colors.grey[900]))),
-      initialRoute: '/forth',
+      initialRoute: '/6',
       // เป็นตัวกำหนดได้ว่าหน้าแรกของแอปจะไปหน้าไหน
       routes: <String, WidgetBuilder>{
-        '/first': (context) => FirstPage(),
-        '/second': (context) => SecondPage(),
-        '/third': (context) => ThirdPage(),
-        '/forth': (context) => FourthPage(),
+        '/1': (context) => FirstPage(),
+        '/2': (context) => SecondPage(),
+        '/3': (context) => ThirdPage(),
+        '/4': (context) => FourthPage(),
+        '/5': (context) => FifthPage(),
+        '/6': (context) => SixthPage(),
         // ใส่หน้าใหม่อย่าลืม มา set route ด้านบนตรงนี้ด้วย โดยเชื่อมมาด้วย class
         // เวลา reload หน้าที่เพิ่มเข้ามาใหม่ใช้ R (not r)
       },
@@ -307,6 +310,132 @@ class FourthPage extends StatelessWidget {
           );
         },
         separatorBuilder: (context, index) => Divider(),
+      ),
+    );
+  }
+}
+
+class FifthPage extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: Text('Grid View'),
+      ),
+      body: GridView.count(
+        crossAxisCount: 2,
+        children: List.generate(6, (index) {
+          // gen list วน loop 6 ครั้ง
+          return InkWell(
+            //inkwell = effect
+            onTap: () {
+              Navigator.pushNamed(context, '/${index + 1}');
+              //ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+              //  content: Text('Tap at $index'),
+              // ));
+              // index start from 0
+            },
+            child: Container(
+              margin: EdgeInsets.all(20.0),
+              decoration: BoxDecoration(
+                  color: Theme.of(context).accentColor,
+                  borderRadius: BorderRadius.circular(8.0)),
+              child: Center(
+                child: Text(
+                  'Page ${index + 1}',
+                  // ชื่อ text ในแต่ละปุ้่ม
+                  style: Theme.of(context).textTheme.headline5,
+                ),
+              ),
+            ),
+          );
+        }),
+      ),
+    );
+  }
+}
+
+class SixthPage extends StatelessWidget {
+// อันนี้เสดแล้ว ctrl + . แล้วเลือกคำสั่ง
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: Text('First Form'),
+      ),
+      body: MyCustomForm(),
+    );
+  }
+}
+
+class MyCustomForm extends StatefulWidget {
+  // recommend สร้าง stateless ก่อน แล้วค่อย convert to stateful >> stateful ไว้เก็บข้อมูล
+  @override
+  _MyCustomFormState createState() => _MyCustomFormState();
+}
+
+class _MyCustomFormState extends State<MyCustomForm> {
+  final _formKey = GlobalKey<FormState>();
+
+  @override
+  Widget build(BuildContext context) {
+    return Form(
+      key: _formKey,
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          TextFormField(
+            decoration: InputDecoration(
+                border: UnderlineInputBorder(),
+                labelText: 'Enter your firstname:'),
+            validator: (value) {
+              if (value == null || value.isEmpty) {
+                return 'Your firstname please....';
+              }
+              //condition if null then return ...
+
+              return null;
+            },
+          ),
+          TextFormField(
+            decoration: InputDecoration(
+                border: UnderlineInputBorder(),
+                labelText: 'Enter your lastname:'),
+            validator: (value) {
+              if (value == null || value.isEmpty) {
+                return 'Your lastname please....';
+              }
+
+              return null;
+            },
+          ),
+          TextFormField(
+            decoration: InputDecoration(
+                border: UnderlineInputBorder(), labelText: 'Enter your age:'),
+            validator: (value) {
+              if (value == null || value.isEmpty) {
+                return 'Please enter your age.';
+              }
+              //condition1
+              if (int.parse(value) < 18) {
+                return 'Please enter your valid age.';
+              }
+              //condition2
+              return null;
+            },
+          ),
+          ElevatedButton(
+            onPressed: () {
+              if (_formKey.currentState!.validate()) {
+                //! ถ้า validate เป็น null
+                ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+                  content: Text('Hooooorayyyyyyyy'),
+                ));
+              }
+            },
+            child: Text('Validate'),
+          ),
+        ],
       ),
     );
   }
