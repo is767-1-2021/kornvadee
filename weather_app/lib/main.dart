@@ -7,7 +7,6 @@ import 'package:weather_app/styles.dart';
 void main() {
   AppSettings settings = AppSettings();
   WidgetsFlutterBinding.ensureInitialized();
-
   // Don't allow landscape mode
   SystemChrome.setPreferredOrientations(
           [DeviceOrientation.portraitUp, DeviceOrientation.portraitDown])
@@ -23,6 +22,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     final theme = ThemeData(
       fontFamily: "Cabin",
+      // สีคือดึง class มาจาก AppColor (Style.dart)
       primaryColor: AppColor.midnightSky,
       accentColor: AppColor.midnightCloud,
       primaryTextTheme: Theme.of(context).textTheme.apply(
@@ -39,6 +39,7 @@ class MyApp extends StatelessWidget {
       title: 'Weather App',
       debugShowCheckedModeBanner: false,
       theme: theme,
+      // ดึงข้อมูลมาจาก Page (Container): lib>page เพื่อแบ่ง data ออกไป
       home: PageContainer(settings: settings),
     );
   }

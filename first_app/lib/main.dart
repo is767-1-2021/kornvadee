@@ -1,5 +1,13 @@
 import 'package:flutter/material.dart';
 
+import 'pages/fifth_page.dart';
+import 'pages/first_page.dart';
+import 'pages/fourth_page.dart';
+import 'pages/second_page.dart';
+import 'pages/sixth_page.dart';
+import 'pages/third_page.dart';
+//แล้วก้มา import page ด้วย
+
 void main() {
   runApp(MyApp());
 }
@@ -17,15 +25,17 @@ class MyApp extends StatelessWidget {
           accentColor: Colors.yellow[100],
           // เป็นการกำหนดสีแบบภาพรวม ว่า overall ให้เปนสีอะไร
           textTheme: TextTheme(bodyText2: TextStyle(color: Colors.grey[900]))),
-      initialRoute: '/6',
+      initialRoute: '/5',
       // เป็นตัวกำหนดได้ว่าหน้าแรกของแอปจะไปหน้าไหน
       routes: <String, WidgetBuilder>{
         '/1': (context) => FirstPage(),
+        //ใส่ add folder เข้ามาให้ไปหา
         '/2': (context) => SecondPage(),
         '/3': (context) => ThirdPage(),
         '/4': (context) => FourthPage(),
         '/5': (context) => FifthPage(),
         '/6': (context) => SixthPage(),
+        //ย้าย page ออกไปแล้วอย่าลืมมาสร้าง root ด้วย (import material ใน page ที่ย้ายไปก่อนค่อยมาสร้าง root ที่หน้านี้)
         // ใส่หน้าใหม่อย่าลืม มา set route ด้านบนตรงนี้ด้วย โดยเชื่อมมาด้วย class
         // เวลา reload หน้าที่เพิ่มเข้ามาใหม่ใช้ R (not r)
       },
@@ -151,292 +161,6 @@ class SubmitButton extends StatelessWidget {
       onPressed: () {
         print('Pressed');
       },
-    );
-  }
-}
-
-class FirstPage extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: Text('First Page'),
-        actions: [
-          IconButton(onPressed: () {}, icon: Icon(Icons.arrow_forward)),
-          IconButton(onPressed: () {}, icon: Icon(Icons.agriculture)),
-          IconButton(onPressed: () {}, icon: Icon(Icons.bubble_chart)),
-          IconButton(onPressed: () {}, icon: Icon(Icons.camera_roll)),
-          IconButton(onPressed: () {}, icon: Icon(Icons.travel_explore)),
-        ],
-      ),
-    );
-  }
-}
-
-class SecondPage extends StatelessWidget {
-  @override
-  // กด Ctrl + . เพื่อดูวิธี error correction
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: Text('Second Page'),
-        centerTitle: true,
-      ),
-      floatingActionButton: FloatingActionButton(
-        child: Icon(Icons.mail_outline),
-        onPressed: () {},
-      ),
-      body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Text('Here is the text formatted by theme data'),
-            Table(
-              children: [
-                TableRow(children: [
-                  Container(
-                    child: Text('Number'),
-                    decoration: BoxDecoration(
-                        color: Colors.green[100],
-                        borderRadius: BorderRadius.circular(8.0)),
-                  ),
-                  Container(
-                    child: Text('Name'),
-                    decoration: BoxDecoration(
-                        color: Colors.green[100],
-                        borderRadius: BorderRadius.circular(8.0)),
-                  ),
-                  Container(
-                    child: Text('Gender'),
-                    decoration: BoxDecoration(
-                        color: Colors.green[100],
-                        borderRadius: BorderRadius.circular(8.0)),
-                  ),
-                ]),
-                TableRow(children: [
-                  Text('1'),
-                  Text('Inging'),
-                  Text('Female'),
-                ]),
-                TableRow(children: [
-                  Text('2'),
-                  Text('Name 2'),
-                  Text('Male'),
-                ]),
-              ],
-            )
-          ],
-        ),
-      ),
-    );
-  }
-}
-// สร้างเสร็จแล้วอย่าลืมดึงขั้นไปใส่ตรง route ด้านบนด้วย
-
-class ThirdPage extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return DefaultTabController(
-      initialIndex: 0,
-      // ตัวเริ่มต้นของ tab นับเปน 0,1,2 เช่นถ้า 0 = cloud
-      length: 3,
-      child: Scaffold(
-        appBar: AppBar(
-          title: Text('Third Page'),
-          bottom: TabBar(
-            tabs: [
-              Tab(icon: Icon(Icons.cloud)),
-              Tab(icon: Icon(Icons.beach_access_outlined)),
-              Tab(icon: Icon(Icons.brightness_1_outlined)),
-            ],
-          ),
-        ),
-        body: TabBarView(
-          children: [
-            Center(
-              child: Text('Cloud'),
-            ),
-            Center(
-              child: Text('Umbrella'),
-            ),
-            Center(
-              child: Text('Sunny'),
-            ),
-          ],
-        ),
-      ),
-    );
-  }
-}
-
-class FourthPage extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    final List<String> entries = <String>[
-      'A',
-      'B',
-      'C',
-      'D',
-      'E',
-      'F',
-      'G',
-      'H',
-      'I',
-      'J',
-      'K',
-      'L',
-      'M',
-      'N',
-      'O'
-    ];
-    final List<int> colorCodes = <int>[700, 400, 100];
-    return Scaffold(
-      appBar: AppBar(
-        title: Text('Listview Example'),
-        // Listview ทำให้สามารถเลื่อนหน้าจอนึง กล่องก้เพิ่มเข้ามา (สร้างทีละตัวเมื่อกล่องโผล่เข้ามาในจอ)
-      ),
-      body: ListView.separated(
-        padding: EdgeInsets.all(9.0),
-        itemCount: entries.length,
-        itemBuilder: (context, index) {
-          return Container(
-            height: 50,
-            color: Colors.amberAccent[colorCodes[index % 3]],
-            // ดึงจาก list colorcodes
-            child: Center(
-              child: Text('Entry ${entries[index]}'),
-              // ดึงข้อความ Entry และ [list entries]
-            ),
-          );
-        },
-        separatorBuilder: (context, index) => Divider(),
-      ),
-    );
-  }
-}
-
-class FifthPage extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: Text('Grid View'),
-      ),
-      body: GridView.count(
-        crossAxisCount: 2,
-        children: List.generate(6, (index) {
-          // gen list วน loop 6 ครั้ง
-          return InkWell(
-            //inkwell = effect
-            onTap: () {
-              Navigator.pushNamed(context, '/${index + 1}');
-              //ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-              //  content: Text('Tap at $index'),
-              // ));
-              // index start from 0
-            },
-            child: Container(
-              margin: EdgeInsets.all(20.0),
-              decoration: BoxDecoration(
-                  color: Theme.of(context).accentColor,
-                  borderRadius: BorderRadius.circular(8.0)),
-              child: Center(
-                child: Text(
-                  'Page ${index + 1}',
-                  // ชื่อ text ในแต่ละปุ้่ม
-                  style: Theme.of(context).textTheme.headline5,
-                ),
-              ),
-            ),
-          );
-        }),
-      ),
-    );
-  }
-}
-
-class SixthPage extends StatelessWidget {
-// อันนี้เสดแล้ว ctrl + . แล้วเลือกคำสั่ง
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: Text('First Form'),
-      ),
-      body: MyCustomForm(),
-    );
-  }
-}
-
-class MyCustomForm extends StatefulWidget {
-  // recommend สร้าง stateless ก่อน แล้วค่อย convert to stateful >> stateful ไว้เก็บข้อมูล
-  @override
-  _MyCustomFormState createState() => _MyCustomFormState();
-}
-
-class _MyCustomFormState extends State<MyCustomForm> {
-  final _formKey = GlobalKey<FormState>();
-
-  @override
-  Widget build(BuildContext context) {
-    return Form(
-      key: _formKey,
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          TextFormField(
-            decoration: InputDecoration(
-                border: UnderlineInputBorder(),
-                labelText: 'Enter your firstname:'),
-            validator: (value) {
-              if (value == null || value.isEmpty) {
-                return 'Your firstname please....';
-              }
-              //condition if null then return ...
-
-              return null;
-            },
-          ),
-          TextFormField(
-            decoration: InputDecoration(
-                border: UnderlineInputBorder(),
-                labelText: 'Enter your lastname:'),
-            validator: (value) {
-              if (value == null || value.isEmpty) {
-                return 'Your lastname please....';
-              }
-
-              return null;
-            },
-          ),
-          TextFormField(
-            decoration: InputDecoration(
-                border: UnderlineInputBorder(), labelText: 'Enter your age:'),
-            validator: (value) {
-              if (value == null || value.isEmpty) {
-                return 'Please enter your age.';
-              }
-              //condition1
-              if (int.parse(value) < 18) {
-                return 'Please enter your valid age.';
-              }
-              //condition2
-              return null;
-            },
-          ),
-          ElevatedButton(
-            onPressed: () {
-              if (_formKey.currentState!.validate()) {
-                //! ถ้า validate เป็น null
-                ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-                  content: Text('Hooooorayyyyyyyy'),
-                ));
-              }
-            },
-            child: Text('Validate'),
-          ),
-        ],
-      ),
     );
   }
 }
