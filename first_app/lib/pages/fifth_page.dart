@@ -9,7 +9,7 @@ class FifthPage extends StatelessWidget {
       ),
       body: GridView.count(
         crossAxisCount: 2,
-        children: List.generate(6, (index) {
+        children: List.generate(7, (index) {
           // gen list วน loop 6 ครั้ง
           return InkWell(
             //inkwell = effect
@@ -23,7 +23,7 @@ class FifthPage extends StatelessWidget {
             child: Container(
               margin: EdgeInsets.all(20.0),
               decoration: BoxDecoration(
-                  color: Theme.of(context).accentColor,
+                  color: Theme.of(context).secondaryHeaderColor,
                   borderRadius: BorderRadius.circular(8.0)),
               child: Center(
                 child: Text(

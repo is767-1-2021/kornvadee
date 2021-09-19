@@ -95,12 +95,11 @@ class _MyCustomFormState extends State<MyCustomForm> {
             onPressed: () {
               if (_formKey.currentState!.validate()) {
                 _formKey.currentState!.save();
+                var response = 'Hooooorayyyyyyyy  $_firstName $_lastName $_age';
                 //validate ผ่านก่อนถึง save > โดยsave จะทำงานก้ต่อเมื่อมี onsave
                 //! ถ้า validate เป็น null
-                ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-                  content:
-                      Text('Hooooorayyyyyyyy  $_firstName $_lastName $_age'),
-                ));
+
+                Navigator.pop(context, response);
               }
             },
             child: Text('Validate'),

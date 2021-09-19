@@ -6,6 +6,7 @@ import 'pages/fourth_page.dart';
 import 'pages/second_page.dart';
 import 'pages/sixth_page.dart';
 import 'pages/third_page.dart';
+import 'pages/seventh_page.dart';
 //แล้วก้มา import page ด้วย
 
 void main() {
@@ -22,7 +23,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
           primarySwatch: Colors.blue,
           primaryColor: Colors.amber[200],
-          accentColor: Colors.yellow[100],
+          //accentColor: Colors.yellow[100],
           // เป็นการกำหนดสีแบบภาพรวม ว่า overall ให้เปนสีอะไร
           textTheme: TextTheme(bodyText2: TextStyle(color: Colors.grey[900]))),
       initialRoute: '/5',
@@ -35,6 +36,7 @@ class MyApp extends StatelessWidget {
         '/4': (context) => FourthPage(),
         '/5': (context) => FifthPage(),
         '/6': (context) => SixthPage(),
+        '/7': (context) => SeventhPage(),
         //ย้าย page ออกไปแล้วอย่าลืมมาสร้าง root ด้วย (import material ใน page ที่ย้ายไปก่อนค่อยมาสร้าง root ที่หน้านี้)
         // ใส่หน้าใหม่อย่าลืม มา set route ด้านบนตรงนี้ด้วย โดยเชื่อมมาด้วย class
         // เวลา reload หน้าที่เพิ่มเข้ามาใหม่ใช้ R (not r)
