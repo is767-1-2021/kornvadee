@@ -1,4 +1,6 @@
+import 'package:first_app/models/first_form_model.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 import 'pages/fifth_page.dart';
 import 'pages/first_page.dart';
@@ -10,9 +12,19 @@ import 'pages/seventh_page.dart';
 //แล้วก้มา import page ด้วย
 
 void main() {
-  runApp(MyApp());
+  runApp(
+    MultiProvider(
+      providers: [
+        ChangeNotifierProvider(
+          create: (context) => FirstFormModel(),
+        ),
+      ],
+      child: MyApp(),
+    ),
+  );
 }
 // ^ start application
+//change notifier provider รับคำสั่งแล้วเอาไปบอกว่า change ไหนบ้าง
 
 class MyApp extends StatelessWidget {
   @override
