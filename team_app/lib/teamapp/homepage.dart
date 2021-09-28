@@ -44,7 +44,9 @@ class _HomeScreenState extends State<HomeScreen> {
             ),
             Container(
               child: GestureDetector(
-                onTap: (() {}),
+                onTap: () {
+                  Navigator.pushNamed(context, '/sta');
+                },
                 child: Container(
                   child: Text(
                     'สถิติหวยย้อนหลัง 15 ปี',
@@ -148,15 +150,6 @@ class _HomeScreenState extends State<HomeScreen> {
           ),
         ],
       ),
-    );
-  }
-}
-
-class Statistics extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return Image.asset(
-      'assets/history.JPG',
     );
   }
 }

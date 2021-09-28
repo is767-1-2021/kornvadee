@@ -4,6 +4,7 @@ import 'package:team_app/teamapp/homepage.dart';
 import 'package:team_app/teamapp/noti.dart';
 import 'package:provider/provider.dart';
 import 'package:team_app/teamapp/notiinput.dart';
+import 'package:team_app/teamapp/statistics.dart';
 
 void main() {
   runApp(
@@ -29,11 +30,12 @@ class MyApp extends StatelessWidget {
         scaffoldBackgroundColor: Colors.deepPurple[50],
         primarySwatch: Colors.deepPurple,
       ),
-      home: Notiinput(),
+      home: Notifications(),
       routes: <String, WidgetBuilder>{
         '/home': (context) => HomeScreen(),
         '/noti': (context) => Notifications(),
         '/input': (context) => Notiinput(),
+        '/sta': (context) => Statistic(),
       },
     );
   }
