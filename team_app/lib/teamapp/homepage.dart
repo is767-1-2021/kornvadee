@@ -9,14 +9,6 @@ class HomeScreen extends StatefulWidget {
 
 class _HomeScreenState extends State<HomeScreen> {
   String randomNumber = '';
-  Image history = Image.asset(
-    'assets/star',
-  );
-  void _history() {
-    setState(() {
-      history = history;
-    });
-  }
 
   @override
   Widget build(BuildContext context) {
