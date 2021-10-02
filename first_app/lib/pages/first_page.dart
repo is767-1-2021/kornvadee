@@ -44,6 +44,7 @@ class _FirstPageState extends State<FirstPage> {
           children: [
             Padding(
               padding: EdgeInsets.all(20.0),
+              // ขาส่ง
               child: Consumer<FirstFormModel>(
                 //consumer จะถูก rebuild ทุกครั้งมี่ต้นทางมีการเปลี่ยนค่า
                 // เพราะนั้นครอบแค่ส่วนที่จำเป็น ครอบตัวในสุด ให้ทำงานไวขึ้นได้ก้ดี

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 class NotiformModel extends ChangeNotifier {
-  List<String>? _alert;
+  List<String>? _alert = <String>[];
 
   get alert => this._alert;
 

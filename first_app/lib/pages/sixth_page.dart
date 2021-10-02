@@ -92,6 +92,7 @@ class _MyCustomFormState extends State<MyCustomForm> {
               _age = int.parse(value!);
               //int.parse คือแปลง value > string (onsave+nulll check)
             },
+            // ขาส่ง
             initialValue: context.read<FirstFormModel>().age.toString(),
 
             // เก็บค่าเอาไว้ ให้ย้อนกลับไปค่าก้ยังค้างอยู่ และสามารถแก้ไขได้

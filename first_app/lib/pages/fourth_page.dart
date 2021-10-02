@@ -30,6 +30,7 @@ class FourthPage extends StatelessWidget {
         padding: EdgeInsets.all(9.0),
         itemCount: entries.length,
         itemBuilder: (context, index) {
+          // 5. ใส่ค่า return เปน producttitle ที่กำหนดไว้
           return ProductTitle(
             item: ProductItem(
               name: 'Product ${entries[index]}',
@@ -45,26 +46,33 @@ class FourthPage extends StatelessWidget {
 }
 
 class ProductItem {
+  // 1. เป็น class มาไว้เก็บค่า (final คือตัวแปรที่ไม่เปลี่ยนค่าแน่ๆ)
+
   final String name;
   final String price;
   final int colorShade;
 
   const ProductItem(
+      // 2. กำหนด class มาแล้ว ตรงนี้จะเปนตัวบอกว่ามีการเกบค่าไว้ให้แล้วที่ this.ชื่อตัวแปร
       {Key? key,
       required this.name,
       required this.price,
       required this.colorShade});
 }
 
+// 3. สร้าง statelesswidget return container
 class ProductTitle extends StatelessWidget {
+  // 4. ประกาศตัวแปร + Key,key required , super key
   final ProductItem item;
 
   const ProductTitle({Key? key, required this.item}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
+    // 7. ใส่ gesturedetector ว่าถ้ากด แล้วใช้โชว์ค่า
     return GestureDetector(
       onTap: () {
+        // ใช้ push เพื่อให้โชว์หน้าใหม่ที่มีค่า item ตามที่ต้องการ
         Navigator.push(
           context,
           MaterialPageRoute(
@@ -83,6 +91,7 @@ class ProductTitle extends StatelessWidget {
   }
 }
 
+// 6. สร้าง class Product detail เพื่อให้ดึงขึ้นไปโชว์
 class ProductDetail extends StatelessWidget {
 // หน้า product detail
   final ProductItem item;

@@ -1,14 +1,17 @@
 import 'package:flutter/material.dart';
 
 class FirstFormModel extends ChangeNotifier {
+  //1. สร้างตัวแปร string / int
   String? _firstName;
   String? _lastName;
   int? _age;
 
+// 2. คลุมทั้งหมด คลิกขวา generate getter setter แล้วจัดหน้าให้สวยงาม
   get firstName => this._firstName;
 
   set firstName(value) {
     this._firstName = value;
+    // 3. ใส่{} แล้ว แทรก notifylisterner ว่าทุกครั้งที่มีค่าเปลี่ยน ให้มาดึงค่าไปใช้งาน
     notifyListeners();
   }
 
@@ -26,4 +29,4 @@ class FirstFormModel extends ChangeNotifier {
     notifyListeners();
   }
 }
-//change notifier provider รับคำสั่งแล้วเอาไปบอกว่า change ไหนบ้าง
+// 4. ไปที่หน้า main แล้วเพิ่มตรง void main

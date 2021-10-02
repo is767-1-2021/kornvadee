@@ -13,6 +13,10 @@ import 'pages/seventh_page.dart';
 
 void main() {
   runApp(
+    // 4. ไปที่หน้า main แล้วเพิ่มตรง void main >
+    // Mutiprovider เพื่อถ้ามี model ใหม่จะได้เพิ่มเข้ามาได้เลย
+    // แล้วต้อง import provider เข้ามาด้วย
+    // 5. ไปที่หน้าขารับ สร้าง class consumer เพื่อให้รับค่า (wrap with widget)
     MultiProvider(
       providers: [
         ChangeNotifierProvider(
