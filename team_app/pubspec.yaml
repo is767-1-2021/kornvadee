@@ -20,6 +20,10 @@ dev_dependencies:
   flutter_test:
     sdk: flutter
 
+flutter_icons:
+  android: "launcher_icon"
+  image_path: "assets/star.png"
+
 flutter:
   uses-material-design: true
   assets:
