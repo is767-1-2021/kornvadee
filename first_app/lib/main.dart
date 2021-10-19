@@ -1,6 +1,10 @@
-import 'package:first_app/models/first_form_model.dart';
+import 'package:first_app/controllers/todo.dart';
+// import 'package:first_app/models/first_form_model.dart';
+import 'package:first_app/pages/todopage.dart';
+import 'package:first_app/pages/eight_page.dart';
+import 'package:first_app/services/services.dart';
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
+// import 'package:provider/provider.dart';
 
 import 'pages/eight_page.dart';
 import 'pages/fifth_page.dart';
@@ -10,27 +14,47 @@ import 'pages/second_page.dart';
 import 'pages/sixth_page.dart';
 import 'pages/third_page.dart';
 import 'pages/seventh_page.dart';
+import 'services/services.dart';
 
 //แล้วก้มา import page ด้วย
 
 void main() {
-  runApp(
-    // 4. ไปที่หน้า main แล้วเพิ่มตรง void main >
-    // Mutiprovider เพื่อถ้ามี model ใหม่จะได้เพิ่มเข้ามาได้เลย
-    // แล้วต้อง import provider เข้ามาด้วย
-    // 5. ไปที่หน้าขารับ สร้าง class consumer เพื่อให้รับค่า (wrap with widget)
-    MultiProvider(
-      providers: [
-        ChangeNotifierProvider(
-          create: (context) => FirstFormModel(),
-        ),
-      ],
-      child: MyApp(),
-    ),
-  );
+  var services = HttpServices();
+  var controller = TodoController(services);
+
+  runApp(TodoApp(controller: controller));
 }
-// ^ start application
-//change notifier provider รับคำสั่งแล้วเอาไปบอกว่า change ไหนบ้าง
+
+class TodoApp extends StatelessWidget {
+  final TodoController controller;
+  TodoApp({required this.controller});
+
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      home: TodoPage(
+        controller: controller,
+      ),
+    );
+  }
+}
+// //   runApp(
+// //     // 4. ไปที่หน้า main แล้วเพิ่มตรง void main >
+// //     // Mutiprovider เพื่อถ้ามี model ใหม่จะได้เพิ่มเข้ามาได้เลย
+// //     // แล้วต้อง import provider เข้ามาด้วย
+// //     // 5. ไปที่หน้าขารับ สร้าง class consumer เพื่อให้รับค่า (wrap with widget)
+// //     MultiProvider(
+// //       providers: [
+// //         ChangeNotifierProvider(
+// //           create: (context) => FirstFormModel(),
+// //         ),
+// //       ],
+// //       child: MyApp(),
+// //     ),
+// //   );
+// // }
+// // ^ start application
+// //change notifier provider รับคำสั่งแล้วเอาไปบอกว่า change ไหนบ้าง
 
 class MyApp extends StatelessWidget {
   @override
