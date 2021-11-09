@@ -1,3 +1,4 @@
+import 'package:firebase_core/firebase_core.dart';
 import 'package:first_app2/controllers/todo.dart';
 import 'package:first_app2/pages/eight_page.dart';
 import 'package:first_app2/pages/todo_page.dart';
@@ -36,8 +37,11 @@ import 'pages/third_page.dart';
 // // ^ start application
 // // change notifier provider รับคำสั่งแล้วเอาไปบอกว่า change ไหนบ้าง
 
-void main() {
-  var services = HttpServices();
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp();
+
+  var services = FirebaseServices();
   var controller = TodoController(services);
 
   runApp(TodoApp(controller: controller));

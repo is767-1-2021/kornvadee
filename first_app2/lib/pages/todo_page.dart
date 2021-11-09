@@ -1,3 +1,4 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:first_app2/controllers/todo.dart';
 import 'package:first_app2/models/todo.dart';
 import 'package:flutter/material.dart';
@@ -13,12 +14,13 @@ class TodoPage extends StatefulWidget {
 
 class _TodoPageState extends State<TodoPage> {
   List<Todo> todos = List.empty();
+  // List<Todo> todos = [];
   bool isLoading = false;
 
   @override
   void initState() {
     super.initState();
-
+    setState(() {});
     widget.controller.onSync.listen(
       (bool synState) => setState(() => isLoading = synState),
     );
@@ -32,6 +34,10 @@ class _TodoPageState extends State<TodoPage> {
     });
   }
 
+  void _updateTodos(int _id, bool _completed) async {
+    await widget.controller.updateTodo(_id, _completed);
+  }
+
   Widget get body => isLoading
       ? CircularProgressIndicator()
       : ListView.builder(
@@ -42,8 +48,27 @@ class _TodoPageState extends State<TodoPage> {
             }
 
             return CheckboxListTile(
-              onChanged: null,
+              // onChanged: (newValue) {
+              //   setState(() {
+              //     todos[index].completed = newValue!;
+              //   });
+              // },
+              onChanged: (bool? value) {
+                setState(() {
+                  todos[index].completed = value!;
+                  _updateTodos(todos[index].id, value);
+                });
+              },
               value: todos[index].completed,
+
+              // value: todos[index].completed == null
+              //     ? false
+              //     : todos[index].completed,
+              // onChanged: (bool) async {
+              //   setState(() {
+              //     widget.controller.updateTodos(todos[index].id);
+              //   });
+              // },
               title: Text(todos[index].title),
             );
           },
