@@ -31,6 +31,7 @@ class NotisServices extends Services {
   Future<List<Notis>> getNotis() async {
     QuerySnapshot snapshot = await FirebaseFirestore.instance
         .collection('million_notification')
+        .where('username', isEqualTo: 'Alifza')
         .get();
     AllNotis notis = AllNotis.fromSnapshot(snapshot);
     return notis.notis;

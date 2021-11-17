@@ -4,10 +4,14 @@ class Notis {
   final String username;
   final String notificationTitle;
   final String notificationDetail;
-  final String icon;
+  // final String icon;
 
-  Notis(this.username, this.notificationTitle, this.notificationDetail,
-      this.icon);
+  Notis(
+    this.username,
+    this.notificationTitle,
+    this.notificationDetail,
+    // this.icon
+  );
 
   factory Notis.fromJson(
     Map<String, dynamic> json,
@@ -16,7 +20,7 @@ class Notis {
       json['username'] as String,
       json['notificationTitle'] as String,
       json['notificationDetail'] as String,
-      json['image'] as String,
+      // json['icon'] as String,
     );
   }
 }
